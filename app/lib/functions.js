@@ -100,9 +100,36 @@ export function calculatePrice(selectedOptions, optionSets) {
         }
       }
 
+      console.log("optionKey");
+      console.log(optionKey);
+      console.log(selectedTargetValue);
+      console.log();
       if (optionKey === "tekstOptions") {
         for (let i = 0; i < selectedTargetValue.length; i++) {
           if (selectedTargetValue[i].key == "Tekstbinnenzijdering") {
+            const value = selectedTargetValue[i].value;
+            const price = findPriceByValue(optionSets, "Gravure", value);
+            totalPrice += price || 0;
+          }
+        }
+      }
+
+      if (optionKey === "woordOptions") {
+        console.log("inside woordOptions");
+        console.log("selectedTargetValue[i]");
+        console.log(selectedTargetValue);
+        // const value = selectedTargetValue[i].value;
+        // const price = findPriceByValue(optionSets, "Gravure", value);
+        // totalPrice += price || 0;
+        // const value = selectedTargetValue[i].key;
+        // console.log("value");
+        // console.log(value);
+        // const price = findPriceByValue(optionSets, "Gravure", value);
+        // console.log("price");
+        // console.log(price);
+        // totalPrice += price || 0;
+        for (let i = 0; i < selectedTargetValue.length; i++) {
+          if (selectedTargetValue[i].key == "Graveertekst") {
             const value = selectedTargetValue[i].value;
             const price = findPriceByValue(optionSets, "Gravure", value);
             totalPrice += price || 0;
