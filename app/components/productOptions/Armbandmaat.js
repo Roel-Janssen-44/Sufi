@@ -41,7 +41,7 @@ export default function Armbandmaat({
       <InputSelect
         value={value}
         onChange={handleChange}
-        title="Armbandmaat:"
+        title="Aangesloten polsmaat:"
         options={armbandmaatOptions}
       />
     </div>
