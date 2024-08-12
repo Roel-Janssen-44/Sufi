@@ -59,33 +59,33 @@ export default function RootLayout({ shopData, children }) {
       >
         <CartProvider
           onLineAdd={() => {
-            // console.log("a line is being added");
-            gtag("event", "add_to_cart", {
-              currency: "USD",
-              value: 30.03,
-              items: [
-                {
-                  item_id: "SKU_12345",
-                  item_name: "Stan and Friends Tee",
-                  affiliation: "Google Merchandise Store",
-                  coupon: "SUMMER_FUN",
-                  discount: 2.22,
-                  index: 0,
-                  item_brand: "Google",
-                  item_category: "Apparel",
-                  item_category2: "Adult",
-                  item_category3: "Shirts",
-                  item_category4: "Crew",
-                  item_category5: "Short sleeve",
-                  item_list_id: "related_products",
-                  item_list_name: "Related Products",
-                  item_variant: "green",
-                  location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
-                  price: 10.01,
-                  quantity: 3,
-                },
-              ],
-            });
+            console.log("a line is being added");
+            // gtag("event", "add_to_cart", {
+            //   currency: "USD",
+            //   value: 30.03,
+            //   items: [
+            //     {
+            //       item_id: "SKU_12345",
+            //       item_name: "Stan and Friends Tee",
+            //       affiliation: "Google Merchandise Store",
+            //       coupon: "SUMMER_FUN",
+            //       discount: 2.22,
+            //       index: 0,
+            //       item_brand: "Google",
+            //       item_category: "Apparel",
+            //       item_category2: "Adult",
+            //       item_category3: "Shirts",
+            //       item_category4: "Crew",
+            //       item_category5: "Short sleeve",
+            //       item_list_id: "related_products",
+            //       item_list_name: "Related Products",
+            //       item_variant: "green",
+            //       location_id: "ChIJIQBpAG2ahYAR_6128GcTUEo",
+            //       price: 10.01,
+            //       quantity: 3,
+            //     },
+            //   ],
+            // });
           }}
           // onLineAdd={() => {
 
@@ -98,18 +98,18 @@ export default function RootLayout({ shopData, children }) {
         >
           <CartContext.Provider value={setCartDrawerIsOpen}>
             <ThemeProvider theme={theme}>
-              <Navbar
+              {/* <Navbar
                 cartDrawerIsOpen={cartDrawerIsOpen}
                 setCartDrawerIsOpen={setCartDrawerIsOpen}
                 menu={shopData.menu}
-              />
-              <Breadcrumb />
+              /> */}
+              {/* <Breadcrumb /> */}
               {children}
             </ThemeProvider>
           </CartContext.Provider>
         </CartProvider>
       </ShopifyProvider>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

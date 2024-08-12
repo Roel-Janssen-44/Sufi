@@ -32,13 +32,14 @@ export default async function Home() {
     console.error("GraphQL Errors:", collectionJson.errors);
   }
   return (
-    <div className="bg-secondary ">
-      <Hero />
+    <div className="">
+      asdasfasdfsa
+      {/* <Hero />
       <CollectionCollage collections={collectionJson.data} />
       <CollectionSlider collectionHandle="luxury-hand-made" />
       <TextWithImage />
       <CollectionSlider collectionHandle="exquisite-hand-made" />
-      <Video />
+      <Video /> */}
       {/* <CollectionSlider collectionHandle="elegant-hand-made" /> */}
     </div>
   );

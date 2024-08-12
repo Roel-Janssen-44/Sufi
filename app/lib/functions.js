@@ -1,23 +1,3 @@
-export function checkForActiveMaterial(activeMaterialList, activeMaterial) {
-  if (
-    zilver.includes(activeMaterial) &&
-    activeMaterialList.includes("zilver")
-  ) {
-    return true;
-  } else if (
-    geelgoud.includes(activeMaterial) &&
-    activeMaterialList.includes("geelgoud")
-  ) {
-    return true;
-  } else if (
-    rosegoud.includes(activeMaterial) &&
-    activeMaterialList.includes("rosegoud")
-  ) {
-    return true;
-  }
-  return false;
-}
-
 export function calculatePrice(selectedOptions, optionSets) {
   let totalPrice = 0;
 
@@ -164,24 +144,4 @@ export function calculatePrice(selectedOptions, optionSets) {
   }
 
   return totalPrice;
-}
-
-export function findOptionSet(optionSets, optionSetKey) {
-  return optionSets[optionSetKey] || null;
-}
-
-export function findPriceByValue(optionSets, targetKey, targetValue) {
-  const optionSet = optionSets[targetKey.toLowerCase() + "Options"];
-
-  if (optionSet && Array.isArray(optionSet)) {
-    const foundOption = optionSet.find(
-      (option) => option.value === targetValue
-    );
-
-    if (foundOption && typeof foundOption.price !== "undefined") {
-      return foundOption.price;
-    }
-  }
-
-  return null;
 }
