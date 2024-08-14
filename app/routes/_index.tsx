@@ -58,10 +58,38 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
-    <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
-      <RecommendedProducts products={data.recommendedProducts} />
+    <div className="home min-h-[3000px]">
+      <div className="flex flex-wrap">
+        <HomeElement name="wild-flowers" />
+        <HomeElement name="events" />
+        <HomeElement name="methods" />
+        <HomeElement name="linden" />
+        <HomeElement name="willow" />
+        <HomeElement name="shop" />
+        <HomeElement name="about" />
+        <HomeElement name="wool" />
+        <HomeElement name="workshops" />
+      </div>
+      {/* <FeaturedCollection collection={data.featuredCollection} />
+      <RecommendedProducts products={data.recommendedProducts} /> */}
     </div>
+  );
+}
+
+function HomeElement({name}: {name: string}) {
+  return (
+    <Link to={`/${name}`} className="group relative">
+      <img
+        src={`/images/homepage/${name}.png`}
+        alt={`${name}`}
+        className="w-full h-auto group-hover:invisible transition-all opacity-100 group-hover:opacity-0"
+      />
+      <img
+        src={`/images/homepage/${name}-cutout.png`}
+        alt={`${name} with cutout`}
+        className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all absolute left-0 top-0 w-full h-auto"
+      />
+    </Link>
   );
 }
 

@@ -4,6 +4,9 @@ import {type CartViewPayload, useAnalytics} from '@shopify/hydrogen';
 import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
 import {useAside} from '~/components/Aside';
 
+import {Image} from '@shopify/hydrogen';
+import NextImage from 'next/image';
+
 interface HeaderProps {
   header: HeaderQuery;
   cart: Promise<CartApiQueryFragment | null>;
@@ -21,9 +24,9 @@ export function Header({
 }: HeaderProps) {
   const {shop, menu} = header;
   return (
-    <header className="header">
+    <header className="header justify-between">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
+        <strong>Sufi</strong>
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -55,7 +58,6 @@ export function HeaderMenu({
       window.location.href = event.currentTarget.href;
     }
   }
-
   return (
     <nav className={className} role="navigation">
       {viewport === 'mobile' && (
@@ -72,6 +74,8 @@ export function HeaderMenu({
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
 
+        console.log('item.url', item);
+
         // if the url is internal, we strip the domain
         const url =
           item.url.includes('myshopify.com') ||
@@ -81,7 +85,7 @@ export function HeaderMenu({
             : item.url;
         return (
           <NavLink
-            className="header-menu-item"
+            className="header-menu-item group relative"
             end
             key={item.id}
             onClick={closeAside}
@@ -89,7 +93,35 @@ export function HeaderMenu({
             style={activeLinkStyle}
             to={url}
           >
-            {item.title}
+            <img
+              src={`/images/navbar/${item.title.toLowerCase()}.png`}
+              alt="Decorative background"
+              className="visible opacity-100 group-hover:invisible group-hover:opacity-0 w-40"
+            />
+            <img
+              src={`/images/navbar/${item.title.toLowerCase()}-expanded.png`}
+              alt="Decorative background"
+              className="absolute h-auto w-40 invisible opacity-0 group-hover:visible group-hover:opacity-100 left-0 top-6"
+            />
+            {item.items.length > 0 ? (
+              <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-20">
+                {item.items.map((subItem) => {
+                  return (
+                    <NavLink
+                      className="relative"
+                      end
+                      key={subItem.id}
+                      onClick={closeAside}
+                      prefetch="intent"
+                      style={activeLinkStyle}
+                      to={subItem.url || '/'}
+                    >
+                      <span className="text-white">{subItem.title}</span>
+                    </NavLink>
+                  );
+                })}
+              </div>
+            ) : null}
           </NavLink>
         );
       })}
@@ -104,15 +136,35 @@ function HeaderCtas({
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
-          </Await>
-        </Suspense>
-      </NavLink>
-      <SearchToggle />
+
+      {/* <NavLink
+        className="header-menu-item"
+        end
+        key={item.id}
+        onClick={closeAside}
+        prefetch="intent"
+        style={activeLinkStyle}
+        to={url}
+      > */}
+      <div className="w-12 sm:w-16 sm:h-16 h-12 ml-4">
+        <img alt="Calendar icon" src={'/images/calendar.png'} className="p-1" />
+      </div>
+      {/* </NavLink> */}
+      {/* <NavLink
+        className="header-menu-item"
+        end
+        key={item.id}
+        onClick={closeAside}
+        prefetch="intent"
+        style={activeLinkStyle}
+        to={url}
+      > */}
+      <div className="w-12 sm:w-16 sm:h-16 h-12 ">
+        <img alt="Shop icon" src={'/images/shop.png'} className="p-1" />
+      </div>
+      {/* </NavLink> */}
       <CartToggle cart={cart} />
+      <SearchToggle />
     </nav>
   );
 }
@@ -132,8 +184,11 @@ function HeaderMenuMobileToggle() {
 function SearchToggle() {
   const {open} = useAside();
   return (
-    <button className="reset" onClick={() => open('search')}>
-      Search
+    <button
+      className="reset w-12 sm:w-16 sm:h-16 h-12"
+      onClick={() => open('search')}
+    >
+      <img src="/images/search.png" className="p-0 w-full h-full" />
     </button>
   );
 }
@@ -155,8 +210,15 @@ function CartBadge({count}: {count: number | null}) {
           url: window.location.href || '',
         } as CartViewPayload);
       }}
+      className="w-12 sm:w-16 sm:h-16 h-12"
     >
-      Cart {count === null ? <span>&nbsp;</span> : count}
+      <img
+        alt="Basket icon"
+        src="/images/basket.png"
+        className="p-1 w-full h-full"
+      />
+      {/* Todo - add product counter */}
+      {/* {count === null ? null : count} */}
     </a>
   );
 }

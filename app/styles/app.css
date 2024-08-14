@@ -176,7 +176,7 @@ button.reset:hover:not(:has(> *)) {
   @media (min-width: 45em) {
     display: flex;
     grid-gap: 1rem;
-    margin-left: 3rem;
+    align-items: center;
   }
 }
 
@@ -187,8 +187,7 @@ button.reset:hover:not(:has(> *)) {
 .header-ctas {
   align-items: center;
   display: flex;
-  grid-gap: 1rem;
-  margin-left: auto;
+  grid-gap: 0.5rem;
 }
 
 /*
