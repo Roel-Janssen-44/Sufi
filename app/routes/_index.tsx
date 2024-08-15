@@ -83,7 +83,7 @@ function HomeElement({name, classes}: {name: string; classes?: string}) {
   return (
     <Link
       to={`/${name}`}
-      className={`group w-80 sm:w-72 relative xl:w-64 ${classes}`}
+      className={`group w-80 sm:w-72 relative xl:w-64 md:flex md:justify-center md:items-center ${classes}`}
     >
       <img
         src={`/images/homepage/${name}.png`}
@@ -93,7 +93,7 @@ function HomeElement({name, classes}: {name: string; classes?: string}) {
       <img
         src={`/images/homepage/${name}-cutout.png`}
         alt={`${name} with cutout`}
-        className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all absolute left-0 top-0 w-full h-auto"
+        className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all absolute left-0 top-0 w-full h-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
       />
     </Link>
   );

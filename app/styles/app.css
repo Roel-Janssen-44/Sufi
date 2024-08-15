@@ -156,32 +156,14 @@ button.reset:hover:not(:has(> *)) {
   position: sticky;
   top: 0;
   z-index: 1;
-  /* padding-bottom: 20px; */
   border-bottom: 1px dashed #d4d4d4;
-  /* border-b-2 border-green-400 pb-10 */
 }
-
-/* .header-menu-mobile-toggle {
-  @media (min-width: 48em) {
-    display: none;
-  }
-} */
 
 .header-menu-mobile {
   display: flex;
   flex-direction: column;
   grid-gap: 1rem;
 }
-
-/* .header-menu-desktop {
-  display: none;
-  grid-gap: 1rem;
-  @media (min-width: 45em) {
-    display: flex;
-    grid-gap: 1rem;
-    align-items: center;
-  }
-} */
 
 .header-menu-item {
   cursor: pointer;
@@ -208,6 +190,8 @@ button.reset:hover:not(:has(> *)) {
   display: flex;
   grid-gap: 1rem;
   padding: 1rem;
+  border-top: 1px dashed #d4d4d4;
+  background: white;
 }
 
 .footer-menu a {

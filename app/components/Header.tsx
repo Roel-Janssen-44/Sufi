@@ -60,7 +60,7 @@ export function HeaderMenu({
   }
   return (
     <nav
-      className={`${className} flex-row gap-4 hidden lg:flex`}
+      className={`${className} flex-row gap-8 hidden lg:flex xl:gap-20`}
       role="navigation"
     >
       {viewport === 'mobile' && (
@@ -151,8 +151,15 @@ function HeaderCtas({
         style={activeLinkStyle}
         to={url}
       > */}
-      <div className="w-12 sm:w-16 sm:h-16 h-12">
-        <img alt="Calendar icon" src={'/images/calendar.png'} className="p-1" />
+      <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
+        <img
+          src="/images/calendar.png"
+          className="p-0 w-full h-full -ml-[2px] scale-80 visible opacity-100 group-hover:opacity-0 group-hover:invisible"
+        />
+        <img
+          src="/images/calendar-hover.png"
+          className="absolute left-0 top-0 invisible opacity-0 group-hover:opacity-100 group-hover:visible"
+        />
       </div>
       {/* </NavLink> */}
       {/* <NavLink
@@ -161,12 +168,20 @@ function HeaderCtas({
         key={item.id}
         onClick={closeAside}
         prefetch="intent"
-        style={activeLinkStyle}
+        style={activeLinkStyle}y
         to={url}
       > */}
-      <div className="w-12 sm:w-16 sm:h-16 h-12 ">
-        <img alt="Shop icon" src={'/images/shop.png'} className="p-1" />
+      <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
+        <img
+          src="/images/shop.png"
+          className="p-0 w-full h-full visible opacity-100 group-hover:opacity-0 group-hover:invisible"
+        />
+        <img
+          src="/images/shop-hover.png"
+          className="absolute left-0 top-0 invisible opacity-0 group-hover:opacity-100 group-hover:visible"
+        />
       </div>
+
       {/* </NavLink> */}
       <CartToggle cart={cart} />
       <SearchToggle />
@@ -190,10 +205,17 @@ function SearchToggle() {
   const {open} = useAside();
   return (
     <button
-      className="reset w-12 sm:w-16 sm:h-16 h-12"
+      className="reset w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer"
       onClick={() => open('search')}
     >
-      <img src="/images/search.png" className="p-0 w-full h-full" />
+      <img
+        src="/images/search.png"
+        className="p-0 w-full h-full visible opacity-100 group-hover:opacity-0 group-hover:invisible"
+      />
+      <img
+        src="/images/search-hover.png"
+        className="absolute left-0 top-0 invisible opacity-0 group-hover:opacity-100 group-hover:visible"
+      />
     </button>
   );
 }
@@ -215,12 +237,15 @@ function CartBadge({count}: {count: number | null}) {
           url: window.location.href || '',
         } as CartViewPayload);
       }}
-      className="w-12 sm:w-16 sm:h-16 h-12"
+      className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer"
     >
       <img
-        alt="Basket icon"
         src="/images/basket.png"
-        className="p-1 w-full h-full"
+        className="p-0 w-full h-full visible opacity-100 group-hover:opacity-0 group-hover:invisible"
+      />
+      <img
+        src="/images/basket-hover-empty.png"
+        className="absolute left-[6px] top-[3px] invisible opacity-0 group-hover:opacity-100 group-hover:visible"
       />
       {/* Todo - add product counter */}
       {/* {count === null ? null : count} */}
