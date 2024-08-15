@@ -58,17 +58,20 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
-    <div className="home min-h-[3000px]">
-      <div className="flex flex-wrap">
-        <HomeElement name="wild-flowers" />
-        <HomeElement name="events" />
-        <HomeElement name="methods" />
-        <HomeElement name="linden" />
-        <HomeElement name="willow" />
-        <HomeElement name="shop" />
-        <HomeElement name="about" />
-        <HomeElement name="wool" />
-        <HomeElement name="workshops" />
+    <div className="home">
+      <div className="flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 xl:grid xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
+        <HomeElement name="wild-flowers" classes="xl:ml-20" />
+        <HomeElement name="events" classes="-mt-32  xl:ml-16" />
+        <HomeElement
+          name="methods"
+          classes="mb-10 mb-0 xl:col-span-2 xl:w-[350px] xl:ml-10 xl:mt-20"
+        />
+        <HomeElement name="linden" classes="xl:-ml-28" />
+        <HomeElement name="willow" classes="mb-6 mb-0 xl:ml-10" />
+        <HomeElement name="shop" classes="sm:mt-20 xl:ml-5" />
+        <HomeElement name="about" classes="-mt-10 sm:mt-10" />
+        <HomeElement name="wool" classes="mb-6 mb-0 xl:mr-5" />
+        <HomeElement name="workshops" classes="xl:mr-10" />
       </div>
       {/* <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} /> */}
@@ -76,9 +79,12 @@ export default function Homepage() {
   );
 }
 
-function HomeElement({name}: {name: string}) {
+function HomeElement({name, classes}: {name: string; classes?: string}) {
   return (
-    <Link to={`/${name}`} className="group relative">
+    <Link
+      to={`/${name}`}
+      className={`group w-80 sm:w-72 relative xl:w-64 ${classes}`}
+    >
       <img
         src={`/images/homepage/${name}.png`}
         alt={`${name}`}

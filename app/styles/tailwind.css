@@ -4,3 +4,9 @@
  */
 
 @import 'tailwindcss';
+
+@theme {
+  --color-primary-orange: #e88a60;
+  --color-primary-green: #2a4c21;
+  --color-light-text: #babb9b;
+}

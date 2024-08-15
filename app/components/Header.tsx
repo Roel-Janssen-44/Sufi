@@ -59,7 +59,10 @@ export function HeaderMenu({
     }
   }
   return (
-    <nav className={className} role="navigation">
+    <nav
+      className={`${className} flex-row gap-4 hidden lg:flex`}
+      role="navigation"
+    >
       {viewport === 'mobile' && (
         <NavLink
           end
@@ -96,15 +99,15 @@ export function HeaderMenu({
             <img
               src={`/images/navbar/${item.title.toLowerCase()}.png`}
               alt="Decorative background"
-              className="visible opacity-100 group-hover:invisible group-hover:opacity-0 w-40"
+              className="visible opacity-100 group-hover:invisible group-hover:opacity-0 w-32"
             />
             <img
               src={`/images/navbar/${item.title.toLowerCase()}-expanded.png`}
               alt="Decorative background"
-              className="absolute h-auto w-40 invisible opacity-0 group-hover:visible group-hover:opacity-100 left-0 top-6"
+              className="absolute h-auto w-full scale-125 invisible opacity-0 group-hover:visible group-hover:opacity-100 left-0 top-14"
             />
             {item.items.length > 0 ? (
-              <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-20">
+              <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-24">
                 {item.items.map((subItem) => {
                   return (
                     <NavLink
@@ -116,7 +119,7 @@ export function HeaderMenu({
                       style={activeLinkStyle}
                       to={subItem.url || '/'}
                     >
-                      <span className="text-white">{subItem.title}</span>
+                      <span className="text-light-text">{subItem.title}</span>
                     </NavLink>
                   );
                 })}
@@ -135,7 +138,9 @@ function HeaderCtas({
 }: Pick<HeaderProps, 'isLoggedIn' | 'cart'>) {
   return (
     <nav className="header-ctas" role="navigation">
-      <HeaderMenuMobileToggle />
+      <div className="block lg:hidden">
+        <HeaderMenuMobileToggle />
+      </div>
 
       {/* <NavLink
         className="header-menu-item"
@@ -146,7 +151,7 @@ function HeaderCtas({
         style={activeLinkStyle}
         to={url}
       > */}
-      <div className="w-12 sm:w-16 sm:h-16 h-12 ml-4">
+      <div className="w-12 sm:w-16 sm:h-16 h-12">
         <img alt="Calendar icon" src={'/images/calendar.png'} className="p-1" />
       </div>
       {/* </NavLink> */}
@@ -173,10 +178,10 @@ function HeaderMenuMobileToggle() {
   const {open} = useAside();
   return (
     <button
-      className="header-menu-mobile-toggle reset"
+      className="header-menu-mobile-toggle reset w-10 h-10"
       onClick={() => open('mobile')}
     >
-      <h3>☰</h3>
+      <h3 className="text-primary-orange cursor-pointer text-3xl">☰</h3>
     </button>
   );
 }
