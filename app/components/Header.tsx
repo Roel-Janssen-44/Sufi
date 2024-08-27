@@ -26,7 +26,7 @@ export function Header({
   return (
     <header className="header justify-between">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>Sufi</strong>
+        <img src="/images/logo.png" className="w-20 -mt-2" alt="Logo Sufi" />
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -60,7 +60,7 @@ export function HeaderMenu({
   }
   return (
     <nav
-      className={`${className} flex-row gap-8 hidden lg:flex xl:gap-20`}
+      className={`${className} flex-row gap-8 mt-3 hidden lg:flex xl:gap-20`}
       role="navigation"
     >
       {viewport === 'mobile' && (
@@ -88,7 +88,7 @@ export function HeaderMenu({
             : item.url;
         return (
           <NavLink
-            className="header-menu-item group relative"
+            className="header-menu-item group relative text-md uppercase"
             end
             key={item.id}
             onClick={closeAside}
@@ -96,7 +96,8 @@ export function HeaderMenu({
             style={activeLinkStyle}
             to={url}
           >
-            <img
+            {item.title}
+            {/* <img
               src={`/images/navbar/${item.title.toLowerCase()}.png`}
               alt="Decorative background"
               className="visible opacity-100 group-hover:invisible group-hover:opacity-0 w-32"
@@ -105,7 +106,7 @@ export function HeaderMenu({
               src={`/images/navbar/${item.title.toLowerCase()}-expanded.png`}
               alt="Decorative background"
               className="absolute h-auto w-full scale-125 invisible opacity-0 group-hover:visible group-hover:opacity-100 left-0 top-14"
-            />
+            /> */}
             {item.items.length > 0 ? (
               <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-24">
                 {item.items.map((subItem) => {
@@ -151,6 +152,8 @@ function HeaderCtas({
         style={activeLinkStyle}
         to={url}
       > */}
+      <SearchToggle />
+
       <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
         <img
           src="/images/calendar.png"
@@ -184,7 +187,6 @@ function HeaderCtas({
 
       {/* </NavLink> */}
       <CartToggle cart={cart} />
-      <SearchToggle />
     </nav>
   );
 }

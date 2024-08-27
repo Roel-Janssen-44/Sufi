@@ -59,19 +59,59 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
     <div className="home">
-      <div className="flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 xl:grid xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
-        <HomeElement name="wild-flowers" classes="xl:ml-20" />
-        <HomeElement name="events" classes="-mt-32 xl:ml-16 xl:mt-0" />
+      <div className="lg:hidden flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 xl:grid xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
+        <HomeElement index={3} name="wild-flowers" classes="xl:ml-20" />
         <HomeElement
+          index={9}
+          name="events"
+          classes="-mt-18 xl:ml-16 xl:mt-0"
+        />
+        <HomeElement
+          index={6}
+          name="methods"
+          classes="xl:mb-0 xl:col-span-2 xl:w-[350px] xl:ml-10 2xl:mt-20"
+        />
+        <HomeElement
+          index={8}
+          name="linden"
+          classes="lg:mt-20 xl:mt-0 xl:-ml-28"
+        />
+        <HomeElement index={7} name="willow" classes="xl:mb-0 xl:ml-10" />
+        <HomeElement index={1} name="shop" classes="sm:mt-20 xl:mt-0 xl:ml-5" />
+        <HomeElement index={4} name="about" classes="-mt-10 sm:mt-10 md:mt-0" />
+        <HomeElement index={2} name="wool" classes="xl:mr-5 md:mb-0" />
+        <HomeElement index={5} name="workshops" classes="xl:mr-10" />
+      </div>
+      <div className="hidden lg:flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 xl:grid xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
+        <HomeElement index={1} name="wild-flowers" classes="xl:ml-20" />
+        <HomeElement
+          index={2}
+          name="events"
+          classes="-mt-32 xl:ml-16 xl:mt-0"
+        />
+        <HomeElement
+          index={3}
           name="methods"
           classes="mb-10 mb-0 xl:mb-0 xl:col-span-2 xl:w-[350px] xl:ml-10 2xl:mt-20"
         />
-        <HomeElement name="linden" classes="lg:mt-20 xl:mt-0 xl:-ml-28" />
-        <HomeElement name="willow" classes="mb-6 mb-0 xl:mb-0 xl:ml-10" />
-        <HomeElement name="shop" classes="sm:mt-20 xl:mt-0 xl:ml-5" />
-        <HomeElement name="about" classes="-mt-10 sm:mt-10 md:mt-0" />
-        <HomeElement name="wool" classes="mb-6 mb-0 xl:mr-5 md:mb-0" />
-        <HomeElement name="workshops" classes="xl:mr-10" />
+        <HomeElement
+          index={4}
+          name="linden"
+          classes="lg:mt-20 xl:mt-0 xl:-ml-28"
+        />
+        <HomeElement
+          index={5}
+          name="willow"
+          classes="mb-6 mb-0 xl:mb-0 xl:ml-10"
+        />
+        <HomeElement index={6} name="shop" classes="sm:mt-20 xl:mt-0 xl:ml-5" />
+        <HomeElement index={7} name="about" classes="-mt-10 sm:mt-10 md:mt-0" />
+        <HomeElement
+          index={8}
+          name="wool"
+          classes="mb-6 mb-0 xl:mr-5 md:mb-0"
+        />
+        <HomeElement index={9} name="workshops" classes="xl:mr-10" />
       </div>
       {/* <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} /> */}
@@ -79,11 +119,20 @@ export default function Homepage() {
   );
 }
 
-function HomeElement({name, classes}: {name: string; classes?: string}) {
+function HomeElement({
+  name,
+  classes,
+  index,
+}: {
+  name: string;
+  classes?: string;
+  index: number;
+}) {
   return (
     <Link
+      style={{order: index}} // Add inline style to dynamically set the order
       to={`/${name}`}
-      className={`group w-80 sm:w-72 relative xl:w-64 md:flex md:justify-center md:items-center xl:block ${classes}`}
+      className={`group lg:order-none w-80 sm:w-72 relative xl:w-64 md:flex md:justify-center md:items-center xl:block ${classes}`}
     >
       <img
         src={`/images/homepage/${name}.png`}

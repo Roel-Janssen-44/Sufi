@@ -149,7 +149,7 @@ button.reset:hover:not(:has(> *)) {
 */
 .header {
   align-items: center;
-  background: #fff;
+  background: #fffcf5;
   display: flex;
   height: var(--header-height);
   padding: 0 1rem;
@@ -181,7 +181,7 @@ button.reset:hover:not(:has(> *)) {
 * --------------------------------------------------
 */
 .footer {
-  background: var(--color-dark);
+  background: #fffcf5;
   margin-top: auto;
 }
 

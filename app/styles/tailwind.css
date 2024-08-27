@@ -3,10 +3,20 @@
  * https://tailwindcss.com/blog/tailwindcss-v4-alpha#css-first-configuration 
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import 'tailwindcss';
 
 @theme {
   --color-primary-orange: #e88a60;
   --color-primary-green: #2a4c21;
   --color-light-text: #babb9b;
+  --color-background: #fffcf5;
+}
+
+.font-main {
+  font-family: 'Work Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
