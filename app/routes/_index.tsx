@@ -58,8 +58,8 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
 export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
-    <div className="home">
-      <div className="lg:hidden flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 xl:grid xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
+    <div className="home overflow-x-hidden">
+      <div className="flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 lg:hidden xl:hidden xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
         <HomeElement index={3} name="wild-flowers" classes="xl:ml-20" />
         <HomeElement
           index={9}

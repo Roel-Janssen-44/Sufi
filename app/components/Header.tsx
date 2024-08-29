@@ -24,7 +24,7 @@ export function Header({
 }: HeaderProps) {
   const {shop, menu} = header;
   return (
-    <header className="header justify-between">
+    <header className="header lg:gap-20 justify-between">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
         <img src="/images/logo.png" className="w-20 -mt-2" alt="Logo Sufi" />
       </NavLink>
@@ -60,7 +60,7 @@ export function HeaderMenu({
   }
   return (
     <nav
-      className={`${className} flex-row gap-8 mt-3 hidden lg:flex xl:gap-20`}
+      className={`${className} max-w-[800px] flex-1 flex-row justify-between gap-8 mt-3 hidden lg:flex xl:gap-20`}
       role="navigation"
     >
       {viewport === 'mobile' && (
@@ -88,7 +88,7 @@ export function HeaderMenu({
             : item.url;
         return (
           <NavLink
-            className="header-menu-item group relative text-md uppercase"
+            className="header-menu-item group relative text-md uppercase w-20 xl:w-28 lg:flex lg:items-center lg:justify-center"
             end
             key={item.id}
             onClick={closeAside}
@@ -96,19 +96,21 @@ export function HeaderMenu({
             style={activeLinkStyle}
             to={url}
           >
-            {item.title}
+            <span className="relative text-center w-40 no-underline hover:no-underline group-hover:text-white z-20">
+              {item.title}
+            </span>
             {/* <img
               src={`/images/navbar/${item.title.toLowerCase()}.png`}
               alt="Decorative background"
               className="visible opacity-100 group-hover:invisible group-hover:opacity-0 w-32"
-            />
+            /> */}
             <img
               src={`/images/navbar/${item.title.toLowerCase()}-expanded.png`}
               alt="Decorative background"
-              className="absolute h-auto w-full scale-125 invisible opacity-0 group-hover:visible group-hover:opacity-100 left-0 top-14"
-            /> */}
+              className="z-0 absolute lg:scale-[2.7]  xl:scale-[2] h-auto w-full invisible opacity-0 group-hover:visible group-hover:opacity-100 left-1/2 top-2 lg:top-9 xl:top-2 -translate-x-1/2 translate-y-1/4"
+            />
             {item.items.length > 0 ? (
-              <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-24">
+              <div className="absolute invisible w-32 opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-10">
                 {item.items.map((subItem) => {
                   return (
                     <NavLink
@@ -120,7 +122,9 @@ export function HeaderMenu({
                       style={activeLinkStyle}
                       to={subItem.url || '/'}
                     >
-                      <span className="text-light-text">{subItem.title}</span>
+                      <span className="text-light-text hover:underline">
+                        {subItem.title}
+                      </span>
                     </NavLink>
                   );
                 })}
