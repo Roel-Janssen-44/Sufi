@@ -136,61 +136,81 @@ export default function Product() {
   const {title, descriptionHtml} = product;
 
   return (
-    <div className="product">
-      <ProductImage image={selectedVariant?.image} />
-      <div className="product-main">
-        <h1>{title}</h1>
-        <ProductPrice
-          price={selectedVariant?.price}
-          compareAtPrice={selectedVariant?.compareAtPrice}
-        />
-        <br />
-        <Suspense
-          fallback={
-            <ProductForm
-              product={product}
-              selectedVariant={selectedVariant}
-              variants={[]}
-            />
-          }
-        >
-          <Await
-            errorElement="There was a problem loading product variants"
-            resolve={variants}
-          >
-            {(data) => (
-              <ProductForm
-                product={product}
-                selectedVariant={selectedVariant}
-                variants={data?.product?.variants.nodes || []}
-              />
+    <div className="container">
+      <div className="product my-16 relative">
+        <div className="sticky top-10">
+          <ProductImage image={selectedVariant?.image} />
+          <div className="w-full mt-16 sm:px-4">
+            {product?.metafields?.map(
+              (metafield: {key: string; value: string}) => (
+                <div key={metafield.key}>
+                  <b className="capitalize">{metafield.key}:</b>{' '}
+                  {metafield.value}
+                </div>
+              ),
             )}
-          </Await>
-        </Suspense>
-        <br />
-        <br />
-        <p>
-          <strong>Description</strong>
-        </p>
-        <br />
-        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
-        <br />
+          </div>
+        </div>
+        <div className="product-main relative">
+          <h1>{title}</h1>
+          <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
+          <div className="flex flex-row items-center pl-4 gap-4 mt-8">
+            <span className="text-primary-green">
+              <ProductPrice
+                price={selectedVariant?.price}
+                compareAtPrice={selectedVariant?.compareAtPrice}
+              />
+            </span>
+            <Suspense
+              fallback={
+                <ProductForm
+                  product={product}
+                  selectedVariant={selectedVariant}
+                  variants={[]}
+                />
+              }
+            >
+              <Await
+                errorElement="There was a problem loading product variants"
+                resolve={variants}
+              >
+                {(data) => (
+                  <ProductForm
+                    product={product}
+                    selectedVariant={selectedVariant}
+                    variants={data?.product?.variants.nodes || []}
+                  />
+                )}
+              </Await>
+            </Suspense>
+          </div>
+          {product?.images?.nodes[1] && (
+            <div className="mt-16">
+              <ProductImage image={product?.images?.nodes[1]} />
+            </div>
+          )}
+        </div>
+        <Analytics.ProductView
+          data={{
+            products: [
+              {
+                id: product.id,
+                title: product.title,
+                price: selectedVariant?.price.amount || '0',
+                vendor: product.vendor,
+                variantId: selectedVariant?.id || '',
+                variantTitle: selectedVariant?.title || '',
+                quantity: 1,
+              },
+            ],
+          }}
+        />
       </div>
-      <Analytics.ProductView
-        data={{
-          products: [
-            {
-              id: product.id,
-              title: product.title,
-              price: selectedVariant?.price.amount || '0',
-              vendor: product.vendor,
-              variantId: selectedVariant?.id || '',
-              variantTitle: selectedVariant?.title || '',
-              quantity: 1,
-            },
-          ],
-        }}
-      />
+      {product?.images?.nodes[2] && (
+        <div className="px-16 mb-16">
+          <ProductImage image={product?.images?.nodes[2]} />
+        </div>
+      )}
     </div>
   );
 }
@@ -255,6 +275,20 @@ const PRODUCT_FRAGMENT = `#graphql
     seo {
       description
       title
+    }
+    images(first: 3) {
+      nodes {
+        id
+        src
+        url
+      }
+    }
+    metafields(identifiers: [
+      { key: "care", namespace: "custom" },
+      { key: "composition", namespace: "custom" }
+    ]) {
+      key
+      value
     }
   }
   ${PRODUCT_VARIANT_FRAGMENT}

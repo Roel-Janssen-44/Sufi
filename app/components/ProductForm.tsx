@@ -19,14 +19,15 @@ export function ProductForm({
   const {open} = useAside();
   return (
     <div className="product-form">
-      <VariantSelector
-        handle={product.handle}
-        options={product.options.filter((option) => option.values.length > 1)}
-        variants={variants}
-      >
-        {({option}) => <ProductOptions key={option.name} option={option} />}
-      </VariantSelector>
-      <br />
+      <div className="mb-2">
+        <VariantSelector
+          handle={product.handle}
+          options={product.options.filter((option) => option.values.length > 1)}
+          variants={variants}
+        >
+          {({option}) => <ProductOptions key={option.name} option={option} />}
+        </VariantSelector>
+      </div>
       <AddToCartButton
         disabled={!selectedVariant || !selectedVariant.availableForSale}
         onClick={() => {
@@ -44,7 +45,25 @@ export function ProductForm({
             : []
         }
       >
-        {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
+        {selectedVariant?.availableForSale ? (
+          <>
+            <img
+              aria-hidden
+              className="w-44 hover:opacity-80 transition-opacity"
+              src="/images/buy-button.png"
+            />
+            <span className="sr-only">Add to cart</span>
+          </>
+        ) : (
+          <>
+            <img
+              aria-hidden
+              className="w-44 hover:opacity-80 transition-opacity"
+              src="/images/notify-me.png"
+            />
+            <span className="sr-only">Notify me</span>
+          </>
+        )}
       </AddToCartButton>
     </div>
   );

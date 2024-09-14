@@ -7,6 +7,8 @@ import {useAside} from '~/components/Aside';
 import {Image} from '@shopify/hydrogen';
 import NextImage from 'next/image';
 
+import NavItem from './NavItem';
+
 interface HeaderProps {
   header: HeaderQuery;
   cart: Promise<CartApiQueryFragment | null>;
@@ -26,7 +28,7 @@ export function Header({
   return (
     <header className="header lg:gap-20 justify-between">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <img src="/images/logo.png" className="w-20 -mt-2" alt="Logo Sufi" />
+        <img src="/images/logo.png" className="w-16 -mt-2" alt="Logo Sufi" />
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -60,7 +62,7 @@ export function HeaderMenu({
   }
   return (
     <nav
-      className={`${className} max-w-[800px] flex-1 flex-row justify-between gap-8 mt-3 hidden lg:flex xl:gap-20`}
+      className={`${className} font-semibold max-w-[800px] flex-1 flex-row justify-between gap-8 mt-0 hidden lg:flex xl:gap-20`}
       role="navigation"
     >
       {viewport === 'mobile' && (
@@ -77,8 +79,6 @@ export function HeaderMenu({
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
 
-        // console.log('item.url', item);
-
         // if the url is internal, we strip the domain
         const url =
           item.url.includes('myshopify.com') ||
@@ -86,51 +86,14 @@ export function HeaderMenu({
           item.url.includes(primaryDomainUrl)
             ? new URL(item.url).pathname
             : item.url;
+
         return (
-          <NavLink
-            className="header-menu-item group relative text-md uppercase w-20 xl:w-28 lg:flex lg:items-center lg:justify-center"
-            end
-            key={item.id}
-            onClick={closeAside}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            <span className="relative text-center w-40 no-underline hover:no-underline group-hover:text-white z-20">
-              {item.title}
-            </span>
-            {/* <img
-              src={`/images/navbar/${item.title.toLowerCase()}.png`}
-              alt="Decorative background"
-              className="visible opacity-100 group-hover:invisible group-hover:opacity-0 w-32"
-            /> */}
-            <img
-              src={`/images/navbar/${item.title.toLowerCase()}-expanded.png`}
-              alt="Decorative background"
-              className="z-0 absolute lg:scale-[2.7]  xl:scale-[2] h-auto w-full invisible opacity-0 group-hover:visible group-hover:opacity-100 left-1/2 top-2 lg:top-9 xl:top-2 -translate-x-1/2 translate-y-1/4"
-            />
-            {item.items.length > 0 ? (
-              <div className="absolute invisible w-32 opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-10">
-                {item.items.map((subItem) => {
-                  return (
-                    <NavLink
-                      className="relative"
-                      end
-                      key={subItem.id}
-                      onClick={closeAside}
-                      prefetch="intent"
-                      style={activeLinkStyle}
-                      to={subItem.url || '/'}
-                    >
-                      <span className="text-light-text hover:underline">
-                        {subItem.title}
-                      </span>
-                    </NavLink>
-                  );
-                })}
-              </div>
-            ) : null}
-          </NavLink>
+          <NavItem
+            item={item}
+            primaryDomainUrl={primaryDomainUrl}
+            publicStoreDomain={publicStoreDomain}
+            closeAside={closeAside}
+          />
         );
       })}
     </nav>
@@ -147,15 +110,6 @@ function HeaderCtas({
         <HeaderMenuMobileToggle />
       </div>
 
-      {/* <NavLink
-        className="header-menu-item"
-        end
-        key={item.id}
-        onClick={closeAside}
-        prefetch="intent"
-        style={activeLinkStyle}
-        to={url}
-      > */}
       <SearchToggle />
 
       <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
@@ -168,16 +122,7 @@ function HeaderCtas({
           className="absolute left-0 top-0 invisible opacity-0 group-hover:opacity-100 group-hover:visible"
         />
       </div>
-      {/* </NavLink> */}
-      {/* <NavLink
-        className="header-menu-item"
-        end
-        key={item.id}
-        onClick={closeAside}
-        prefetch="intent"
-        style={activeLinkStyle}y
-        to={url}
-      > */}
+
       <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
         <img
           src="/images/shop.png"
@@ -189,7 +134,6 @@ function HeaderCtas({
         />
       </div>
 
-      {/* </NavLink> */}
       <CartToggle cart={cart} />
     </nav>
   );
@@ -322,7 +266,6 @@ function activeLinkStyle({
   isPending: boolean;
 }) {
   return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
+    color: isActive ? 'white' : 'black',
   };
 }
