@@ -6,7 +6,7 @@ import {useVariantUrl} from '~/lib/variants';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 
 export const meta: MetaFunction<typeof loader> = () => {
-  return [{title: `Hydrogen | Products`}];
+  return [{title: `Sufi | Products`}];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -51,11 +51,10 @@ export default function Collection() {
   const {products} = useLoaderData<typeof loader>();
 
   return (
-    <div className="collection">
-      <h1>Products</h1>
+    <div className="collection container mx-auto">
       <PaginatedResourceSection
         connection={products}
-        resourcesClassName="products-grid"
+        resourcesClassName="products-grid mt-10"
       >
         {({node: product, index}) => (
           <ProductItem
@@ -80,24 +79,48 @@ function ProductItem({
   const variantUrl = useVariantUrl(product.handle, variant.selectedOptions);
   return (
     <Link
-      className="product-item"
+      className="product-item relative group"
       key={product.id}
       prefetch="intent"
       to={variantUrl}
     >
       {product.featuredImage && (
-        <Image
-          alt={product.featuredImage.altText || product.title}
-          aspectRatio="1/1"
-          data={product.featuredImage}
-          loading={loading}
-          sizes="(min-width: 45em) 400px, 100vw"
-        />
+        <div className="relative w-full h-auto overflow-hidden">
+          <Image
+            alt={product.featuredImage.altText || product.title}
+            className="group-hover:scale-105 transition-transform duration-300"
+            // aspectRatio="1/1"
+            data={product.featuredImage}
+            loading={loading}
+            sizes="(min-width: 45em) 400px, 100vw"
+          />
+        </div>
       )}
-      <h4>{product.title}</h4>
-      <small>
-        <Money data={product.priceRange.minVariantPrice} />
-      </small>
+      <h4 className="font-main font-semibold w-full text-center absolute left-0 bottom-24 text-white">
+        {product.title}
+      </h4>
+      <div
+        className={`text-center mt-4 flex flex-row justify-center gap-2 ${
+          product.totalInventory == undefined
+            ? ''
+            : product.totalInventory > 0
+            ? 'text-primary-green'
+            : 'text-sold-out'
+        }`}
+      >
+        <Money withoutTrailingZeros data={product.priceRange.minVariantPrice} />
+        {product.totalInventory !== undefined &&
+          product.totalInventory !== null && (
+            <>
+              {product.totalInventory == 0 && (
+                <>
+                  <span>-</span>
+                  <span>SOLD OUT</span>
+                </>
+              )}
+            </>
+          )}
+      </div>
     </Link>
   );
 }
@@ -111,6 +134,7 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
     id
     handle
     title
+    totalInventory
     featuredImage {
       id
       altText

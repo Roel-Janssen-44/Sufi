@@ -77,7 +77,7 @@ export function HeaderMenu({
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
 
-        console.log('item.url', item);
+        // console.log('item.url', item);
 
         // if the url is internal, we strip the domain
         const url =

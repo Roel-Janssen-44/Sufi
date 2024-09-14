@@ -112,7 +112,7 @@ function ProductItem({
   const variantUrl = useVariantUrl(product.handle, variant.selectedOptions);
   return (
     <Link
-      className="product-item"
+      className="product-item relative"
       key={product.id}
       prefetch="intent"
       to={variantUrl}
@@ -126,10 +126,31 @@ function ProductItem({
           sizes="(min-width: 45em) 400px, 100vw"
         />
       )}
-      <h4>{product.title}</h4>
-      <small>
-        <Money data={product.priceRange.minVariantPrice} />
-      </small>
+      <h4 className="font-main font-semibold w-full text-center absolute left-0 bottom-24 text-white">
+        {product.title}
+      </h4>
+      <div
+        className={`text-center mt-4 flex flex-row justify-center gap-2 ${
+          product.totalInventory == undefined
+            ? ''
+            : product.totalInventory > 0
+            ? 'text-primary-green'
+            : 'text-sold-out'
+        }`}
+      >
+        <Money withoutTrailingZeros data={product.priceRange.minVariantPrice} />
+        {product.totalInventory !== undefined &&
+          product.totalInventory !== null && (
+            <>
+              {product.totalInventory == 0 && (
+                <>
+                  <span>-</span>
+                  <span>SOLD OUT</span>
+                </>
+              )}
+            </>
+          )}
+      </div>
     </Link>
   );
 }
@@ -143,6 +164,7 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
     id
     handle
     title
+    totalInventory
     featuredImage {
       id
       altText
