@@ -137,11 +137,12 @@ export default function Product() {
 
   return (
     <div className="container">
-      <div className="product my-16 relative">
-        <div className="sticky top-10">
+      <div className="product sm:my-8 relative">
+        <div className="md:px-4">
           <ProductImage image={selectedVariant?.image} />
-          <div className="w-full mt-16 sm:px-4">
+          <div className="hidden md:block w-full mt-16">
             {product?.metafields?.map(
+              // @ts-expect-error
               (metafield: {key: string; value: string}) => (
                 <div key={metafield.key}>
                   <b className="capitalize">{metafield.key}:</b>{' '}
@@ -151,9 +152,35 @@ export default function Product() {
             )}
           </div>
         </div>
-        <div className="product-main relative">
-          <h1>{title}</h1>
+        <div className="product-main relative px-4 mt-8">
+          <div className="flex mb-6">
+            <div className="relative">
+              <img
+                src="/images/product-title-background.png"
+                alt="Decorative image"
+                aria-hidden
+                width={275}
+              />
+              <h1
+                style={{fontSize: '1rem'}}
+                className="w-full text-center text-white absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              >
+                {title}
+              </h1>
+            </div>
+          </div>
           <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
+          <div className="block md:hidden w-full mt-4">
+            {product?.metafields?.map(
+              // @ts-expect-error
+              (metafield: {key: string; value: string}) => (
+                <div key={metafield.key} className="my-2">
+                  <b className="capitalize">{metafield.key}:</b>{' '}
+                  {metafield.value}
+                </div>
+              ),
+            )}
+          </div>
           <div className="flex flex-row items-center pl-4 gap-4 mt-8">
             <span className="text-primary-green">
               <ProductPrice
@@ -185,7 +212,8 @@ export default function Product() {
             </Suspense>
           </div>
           {product?.images?.nodes[1] && (
-            <div className="mt-16">
+            <div className="mt-8 lg:mt-16">
+              {/* @ts-expect-error */}
               <ProductImage image={product?.images?.nodes[1]} />
             </div>
           )}
@@ -207,7 +235,8 @@ export default function Product() {
         />
       </div>
       {product?.images?.nodes[2] && (
-        <div className="px-16 mb-16">
+        <div className="md:px-16 mb-16 mt-4 px-4 lg:mt-16 lg:px-24">
+          {/* @ts-expect-error */}
           <ProductImage image={product?.images?.nodes[2]} />
         </div>
       )}

@@ -96,6 +96,7 @@ function ProductItem({
           />
         </div>
       )}
+
       <h4 className="font-main font-semibold w-full text-center absolute left-0 bottom-24 text-white">
         {product.title}
       </h4>
@@ -108,7 +109,28 @@ function ProductItem({
             : 'text-sold-out'
         }`}
       >
-        <Money withoutTrailingZeros data={product.priceRange.minVariantPrice} />
+        {product.compareAtPriceRange.minVariantPrice.amount !== '0.0' && (
+          <div className="flex flex-row">
+            <span className="line-through mr-1">
+              <Money
+                withoutTrailingZeros
+                data={product.priceRange.minVariantPrice}
+              />
+            </span>
+            <span className="text-sale">
+              <Money
+                withoutTrailingZeros
+                data={product.compareAtPriceRange.minVariantPrice}
+              />
+            </span>
+          </div>
+        )}
+        {product.compareAtPriceRange.minVariantPrice.amount == '0.0' && (
+          <Money
+            withoutTrailingZeros
+            data={product.priceRange.minVariantPrice}
+          />
+        )}
         {product.totalInventory !== undefined &&
           product.totalInventory !== null && (
             <>
@@ -116,8 +138,33 @@ function ProductItem({
                 <>
                   <span>-</span>
                   <span>SOLD OUT</span>
+                  <Link
+                    // Todo - Add notify me link
+                    to="/"
+                    className="absolute right-4 sm:right-8 top-4 sm:top-8 w-32 h-auto"
+                  >
+                    <img
+                      src="/images/notify-me.png"
+                      className="w-full h-auto"
+                    />
+                  </Link>
                 </>
               )}
+            </>
+          )}
+        {product.totalInventory !== undefined &&
+          product.totalInventory !== null && (
+            <>
+              {product.totalInventory !== 0 &&
+                product.compareAtPriceRange.minVariantPrice.amount !==
+                  '0.0' && (
+                  <>
+                    {/* Sale check */}
+                    <div className="absolute right-4 sm:right-8 top-4 sm:top-8 w-36 h-auto">
+                      <img src="/images/sale.png" className="w-full h-auto" />
+                    </div>
+                  </>
+                )}
             </>
           )}
       </div>
@@ -147,6 +194,14 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
         ...MoneyProductItem
       }
       maxVariantPrice {
+        ...MoneyProductItem
+      }
+    }
+    compareAtPriceRange {
+      maxVariantPrice {
+        ...MoneyProductItem
+      }
+      minVariantPrice {
         ...MoneyProductItem
       }
     }

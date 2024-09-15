@@ -180,6 +180,14 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
         ...MoneyProductItem
       }
     }
+    compareAtPriceRange {
+      maxVariantPrice {
+        ...MoneyProductItem
+      }
+      minVariantPrice {
+        ...MoneyProductItem
+      }
+    }
     variants(first: 1) {
       nodes {
         selectedOptions {
