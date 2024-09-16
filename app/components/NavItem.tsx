@@ -31,18 +31,20 @@ export default function NavItem({
   }
 
   return (
-    <NavLink
-      className="header-menu-item group relative text-md uppercase w-20 xl:w-28 lg:flex lg:items-center lg:justify-center"
-      end
-      key={item.id}
-      onClick={closeAside}
-      prefetch="intent"
-      style={activeLinkStyle}
-      to={url}
-    >
-      <span className="normal-case relative text-center w-40 no-underline hover:no-underline group-hover:text-white z-20">
-        {item.title}
-      </span>
+    <div className="relative group">
+      <NavLink
+        className="header-menu-item relative text-md uppercase w-20 xl:w-28 lg:flex lg:items-center lg:justify-center"
+        end
+        key={item.id}
+        onClick={closeAside}
+        prefetch="intent"
+        style={activeLinkStyle}
+        to={url}
+      >
+        <span className="normal-case relative text-center w-40 no-underline hover:no-underline group-hover:text-white z-20">
+          {item.title}
+        </span>
+      </NavLink>
 
       {isActive && (
         <img
@@ -60,6 +62,12 @@ export default function NavItem({
       {item.items.length > 0 ? (
         <div className="font-title absolute invisible w-32 opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-10">
           {item.items.map((subItem: any) => {
+            const subItemUrl =
+              item.url.includes('myshopify.com') ||
+              item.url.includes(publicStoreDomain) ||
+              item.url.includes(primaryDomainUrl)
+                ? new URL(subItem.url).pathname
+                : subItem.url;
             return (
               <NavLink
                 className="relative"
@@ -68,7 +76,7 @@ export default function NavItem({
                 onClick={closeAside}
                 prefetch="intent"
                 style={activeLinkStyle}
-                to={subItem.url || '/'}
+                to={subItemUrl || '/'}
               >
                 <span className="text-light-text capitalize font-semibold hover:underline">
                   {subItem.title}
@@ -78,7 +86,7 @@ export default function NavItem({
           })}
         </div>
       ) : null}
-    </NavLink>
+    </div>
   );
 }
 

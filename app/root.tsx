@@ -155,6 +155,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         )}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
+        <div className="md:flex-row flex-col-reverse md:w-1/2 max-w-md max-w-xl mx-4 px-4 justify-between mt-8 mb-8 mt-4"></div>
       </body>
     </html>
   );

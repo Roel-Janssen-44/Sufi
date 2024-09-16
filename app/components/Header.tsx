@@ -123,16 +123,18 @@ function HeaderCtas({
         />
       </div>
 
-      <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
-        <img
-          src="/images/shop.png"
-          className="p-0 w-full h-full visible opacity-100 group-hover:opacity-0 group-hover:invisible"
-        />
-        <img
-          src="/images/shop-hover.png"
-          className="absolute left-0 top-0 invisible opacity-0 group-hover:opacity-100 group-hover:visible"
-        />
-      </div>
+      <NavLink prefetch="intent" to="/collections/all">
+        <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
+          <img
+            src="/images/shop.png"
+            className="p-0 w-full h-full visible opacity-100 group-hover:opacity-0 group-hover:invisible"
+          />
+          <img
+            src="/images/shop-hover.png"
+            className="absolute left-0 top-0 invisible opacity-0 group-hover:opacity-100 group-hover:visible"
+          />
+        </div>
+      </NavLink>
 
       <CartToggle cart={cart} />
     </nav>
