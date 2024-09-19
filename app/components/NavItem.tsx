@@ -69,8 +69,10 @@ export default function NavItem({
                 ? new URL(subItem.url).pathname
                 : subItem.url;
 
-            if (subItemUrl == '/pages/mission') {
+            if (subItem.title.toLowerCase() == 'mission') {
               subItemUrl = 'pages/mission#mission';
+            } else if (subItem.title.toLowerCase() == 'oppportunities') {
+              subItemUrl = 'pages/team#oppportunities';
             }
             console.log(subItemUrl);
             return (
