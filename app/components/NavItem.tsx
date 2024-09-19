@@ -17,7 +17,7 @@ export default function NavItem({
   closeAside: any;
 }) {
   // if the url is internal, we strip the domain
-  const url =
+  let url =
     item.url.includes('myshopify.com') ||
     item.url.includes(publicStoreDomain) ||
     item.url.includes(primaryDomainUrl)
@@ -41,7 +41,7 @@ export default function NavItem({
         style={activeLinkStyle}
         to={url}
       >
-        <span className="normal-case relative text-center w-40 no-underline hover:no-underline group-hover:text-white z-20">
+        <span className=" relative text-center w-40 no-underline hover:no-underline group-hover:text-white z-20">
           {item.title}
         </span>
       </NavLink>
@@ -62,12 +62,17 @@ export default function NavItem({
       {item.items.length > 0 ? (
         <div className="font-title absolute invisible w-32 opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-10">
           {item.items.map((subItem: any) => {
-            const subItemUrl =
+            let subItemUrl =
               item.url.includes('myshopify.com') ||
               item.url.includes(publicStoreDomain) ||
               item.url.includes(primaryDomainUrl)
                 ? new URL(subItem.url).pathname
                 : subItem.url;
+
+            if (subItemUrl == '/pages/mission') {
+              subItemUrl = 'pages/mission#mission';
+            }
+            console.log(subItemUrl);
             return (
               <NavLink
                 className="relative"
@@ -78,7 +83,7 @@ export default function NavItem({
                 style={activeLinkStyle}
                 to={subItemUrl || '/'}
               >
-                <span className="text-light-text capitalize font-semibold hover:underline">
+                <span className="text-light-text lowercase font-semibold hover:underline">
                   {subItem.title}
                 </span>
               </NavLink>

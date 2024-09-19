@@ -70,7 +70,10 @@ function FooterMenu({
         );
       })}
       <div className="ml-auto flex flex-row gap-8">
-        <div className="w-16 h-16 group relative cursor-pointer">
+        <a
+          href="mailto:info@studiosufi.com"
+          className="w-16 h-16 group relative cursor-pointer"
+        >
           <img
             src="/images/mail.png"
             className="p-0 w-full h-full visible opacity-100 group-hover:opacity-0 group-hover:invisible"
@@ -79,8 +82,13 @@ function FooterMenu({
             src="/images/mail-hover.png"
             className="absolute left-0 top-0 invisible opacity-0 group-hover:opacity-100 group-hover:visible"
           />
-        </div>
-        <div className="w-16 h-16 group relative cursor-pointer">
+        </a>
+        <a
+          href="https://www.instagram.com/studiosufi"
+          rel="nofollow"
+          target="_blank"
+          className="w-16 h-16 group relative cursor-pointer"
+        >
           <img
             src="/images/instagram.png"
             className="p-0 w-full h-full visible opacity-100 group-hover:opacity-0 group-hover:invisible"
@@ -89,7 +97,7 @@ function FooterMenu({
             src="/images/instagram-hover.png"
             className="absolute -left-[1px] scale-95 top-[2px] invisible opacity-0 group-hover:opacity-100 group-hover:visible"
           />
-        </div>
+        </a>
         <div className="w-16 h-16 group relative cursor-pointer">
           <img
             src="/images/sun.png"

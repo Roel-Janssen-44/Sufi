@@ -80,12 +80,12 @@ export function HeaderMenu({
         if (!item.url) return null;
 
         // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
+        // const url =
+        //   item.url.includes('myshopify.com') ||
+        //   item.url.includes(publicStoreDomain) ||
+        //   item.url.includes(primaryDomainUrl)
+        //     ? new URL(item.url).pathname
+        //     : item.url;
 
         return (
           <NavItem
@@ -112,7 +112,7 @@ function HeaderCtas({
 
       <SearchToggle />
 
-      <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
+      {/* <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">
         <img
           src="/images/calendar.png"
           className="p-0 w-full h-full -ml-[2px] scale-80 visible opacity-100 group-hover:opacity-0 group-hover:invisible"
@@ -121,7 +121,7 @@ function HeaderCtas({
           src="/images/calendar-hover.png"
           className="absolute left-0 top-0 invisible opacity-0 group-hover:opacity-100 group-hover:visible"
         />
-      </div>
+      </div> */}
 
       <NavLink prefetch="intent" to="/collections/all">
         <div className="w-12 sm:w-16 sm:h-16 h-12 group relative cursor-pointer">

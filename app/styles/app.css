@@ -191,7 +191,6 @@ button.reset:hover:not(:has(> *)) {
   grid-gap: 1rem;
   padding: 1rem;
   border-top: 1px dashed #d4d4d4;
-  background: white;
 }
 
 .footer-menu a {
@@ -378,7 +377,13 @@ button.reset:hover:not(:has(> *)) {
   margin-bottom: 2rem;
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(var(--grid-item-width), 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
   .products-grid {
     grid-template-columns: repeat(3, minmax(var(--grid-item-width), 1fr));
   }

@@ -88,7 +88,7 @@ function ProductItem({
         <div className="relative w-full h-auto overflow-hidden">
           <Image
             alt={product.featuredImage.altText || product.title}
-            className="group-hover:scale-105 transition-transform duration-300"
+            className="transition-transform duration-300"
             // aspectRatio="1/1"
             data={product.featuredImage}
             loading={loading}
@@ -145,7 +145,7 @@ function ProductItem({
                   >
                     <img
                       src="/images/notify-me.png"
-                      className="w-full h-auto"
+                      className="w-full h-auto group-hover:scale-115 duration-300"
                     />
                   </Link>
                 </>
@@ -161,7 +161,10 @@ function ProductItem({
                   <>
                     {/* Sale check */}
                     <div className="absolute right-4 sm:right-8 top-4 sm:top-8 w-36 h-auto">
-                      <img src="/images/sale.png" className="w-full h-auto" />
+                      <img
+                        src="/images/sale.png"
+                        className="w-full h-auto  group-hover:scale-115 duration-300"
+                      />
                     </div>
                   </>
                 )}

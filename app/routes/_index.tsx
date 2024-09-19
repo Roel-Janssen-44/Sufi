@@ -83,7 +83,7 @@ export default function Homepage() {
         <HomeElement index={5} name="workshops" classes="xl:mr-10" />
       </div>
       <div className="hidden lg:flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 xl:grid xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
-        <HomeElement index={1} name="wild-flowers" classes="xl:ml-20" />
+        {/* <HomeElement index={1} name="wild-flowers" classes="xl:ml-20" />
         <HomeElement
           index={2}
           name="events"
@@ -111,7 +111,44 @@ export default function Homepage() {
           name="wool"
           classes="mb-6 mb-0 xl:mr-5 md:mb-0"
         />
-        <HomeElement index={9} name="workshops" classes="xl:mr-10" />
+        <HomeElement index={9} name="workshops" classes="xl:mr-10" /> */}
+
+        {/*  */}
+        {/*  */}
+        {/*  */}
+
+        <HomeElement index={1} name="wild-flowers" classes="xl:ml-20" />
+        <HomeElement index={2} name="shop" classes="-mt-32 xl:ml-16 xl:mt-0" />
+        {/* Methods moet mission worden */}
+        <HomeElement
+          index={3}
+          name="methods"
+          // classes="xl:col-span-2 xl:w-[350px] xl:ml-10 xl:-mt-20"
+          classes="mb-10 mb-0 xl:mb-0 xl:col-span-2 xl:w-[350px] xl:ml-10 xl:-mt-20"
+        />
+        <HomeElement
+          index={4}
+          name="linden"
+          classes="lg:mt-20 xl:mt-0 xl:-ml-28"
+        />
+        <HomeElement
+          index={5}
+          name="willow"
+          classes="mb-6 mb-0 xl:mb-0 xl:ml-10"
+        />
+        {/* About moet story worden */}
+        <HomeElement
+          index={7}
+          name="about"
+          classes="sm:mt-20 xl:mt-0 xl:ml-5"
+        />
+        <HomeElement index={8} name="wool" classes="-mt-10 sm:mt-10 md:mt-0" />
+        <HomeElement index={8} name="events" />
+        <HomeElement
+          index={9}
+          name="workshops"
+          classes="mb-6 mb-0 xl:mr-5 md:mb-0"
+        />
       </div>
       {/* <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} /> */}
@@ -135,12 +172,12 @@ function HomeElement({
       className={`group lg:order-none w-80 sm:w-72 relative xl:w-64 md:flex md:justify-center md:items-center xl:block ${classes}`}
     >
       <img
-        src={`/images/homepage/${name}.png`}
+        src={`/images/homepage/${name}.svg`}
         alt={`${name}`}
         className="w-full h-auto group-hover:invisible transition-all opacity-100 group-hover:opacity-0"
       />
       <img
-        src={`/images/homepage/${name}-cutout.png`}
+        src={`/images/homepage/${name}-cutout.svg`}
         alt={`${name} with cutout`}
         className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all absolute left-0 top-0 w-full h-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 xl:top-0 xl:left-0 xl:translate-x-0 xl:translate-y-0"
       />
