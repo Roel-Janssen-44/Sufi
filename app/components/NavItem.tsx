@@ -72,7 +72,7 @@ export default function NavItem({
             if (subItem.title.toLowerCase() == 'mission') {
               subItemUrl = 'pages/mission#mission';
             } else if (subItem.title.toLowerCase() == 'opportunities') {
-              subItemUrl = 'pages/team#oppportunities';
+              subItemUrl = 'pages/team#opportunities';
             }
             console.log(subItemUrl);
             return (
