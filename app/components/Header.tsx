@@ -4,9 +4,6 @@ import {type CartViewPayload, useAnalytics} from '@shopify/hydrogen';
 import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
 import {useAside} from '~/components/Aside';
 
-import {Image} from '@shopify/hydrogen';
-import NextImage from 'next/image';
-
 import NavItem from './NavItem';
 
 interface HeaderProps {

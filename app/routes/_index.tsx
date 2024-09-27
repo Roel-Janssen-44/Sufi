@@ -59,99 +59,34 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
     <div className="home overflow-x-hidden">
-      <div className="flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 lg:hidden xl:hidden xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
-        <HomeElement index={3} name="wild-flowers" classes="xl:ml-20" />
-        <HomeElement
-          index={9}
-          name="events"
-          classes="-mt-18 xl:ml-16 xl:mt-0"
-        />
-        <HomeElement
-          index={6}
-          name="methods"
-          classes="xl:mb-0 xl:col-span-2 xl:w-[350px] xl:ml-10 2xl:mt-20"
-        />
-        <HomeElement
-          index={8}
-          name="linden"
-          classes="lg:mt-20 xl:mt-0 xl:-ml-28"
-        />
-        <HomeElement index={7} name="willow" classes="xl:mb-0 xl:ml-10" />
-        <HomeElement index={1} name="shop" classes="sm:mt-20 xl:mt-0 xl:ml-5" />
-        <HomeElement index={4} name="about" classes="-mt-10 sm:mt-10 md:mt-0" />
-        <HomeElement index={2} name="wool" classes="xl:mr-5 md:mb-0" />
-        <HomeElement index={5} name="workshops" classes="xl:mr-10" />
+      <div className="flex items-center gap-4 flex-row flex-wrap justify-center sm:gap-x-10 lg:hidden xl:hidden xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
+        <HomeElement index={3} name="wild-flowers" />
+        <HomeElement index={9} name="events" />
+        <HomeElement index={6} name="mission" classes="w-[450px]" />
+        <HomeElement index={8} name="linden" />
+        <HomeElement index={7} name="willow" />
+        <HomeElement index={1} name="shop" />
+        <HomeElement index={4} name="story" />
+        <HomeElement index={2} name="wool" />
+        <HomeElement index={5} name="workshops" classes="-mt-20" />
       </div>
       <div className="hidden lg:flex gap-4 flex-row flex-wrap justify-center sm:gap-x-10 xl:grid xl:grid-cols-5 mt-20 2xl:max-w-[1300px] 2xl:mx-auto">
-        {/* <HomeElement index={1} name="wild-flowers" classes="xl:ml-20" />
-        <HomeElement
-          index={2}
-          name="events"
-          classes="-mt-32 xl:ml-16 xl:mt-0"
-        />
+        <HomeElement index={1} name="wild-flowers" />
+        <HomeElement index={2} name="shop" />
         <HomeElement
           index={3}
-          name="methods"
-          classes="mb-10 mb-0 xl:mb-0 xl:col-span-2 xl:w-[350px] xl:ml-10 2xl:mt-20"
+          name="mission"
+          classes="xl:col-span-2 lg:w-[350px] xl:w-[512px]"
         />
-        <HomeElement
-          index={4}
-          name="linden"
-          classes="lg:mt-20 xl:mt-0 xl:-ml-28"
-        />
-        <HomeElement
-          index={5}
-          name="willow"
-          classes="mb-6 mb-0 xl:mb-0 xl:ml-10"
-        />
-        <HomeElement index={6} name="shop" classes="sm:mt-20 xl:mt-0 xl:ml-5" />
-        <HomeElement index={7} name="about" classes="-mt-10 sm:mt-10 md:mt-0" />
-        <HomeElement
-          index={8}
-          name="wool"
-          classes="mb-6 mb-0 xl:mr-5 md:mb-0"
-        />
-        <HomeElement index={9} name="workshops" classes="xl:mr-10" /> */}
-
-        {/*  */}
-        {/*  */}
-        {/*  */}
-
-        <HomeElement index={1} name="wild-flowers" classes="xl:ml-20" />
-        <HomeElement index={2} name="shop" classes="-mt-32 xl:ml-16 xl:mt-0" />
-        {/* Methods moet mission worden */}
-        <HomeElement
-          index={3}
-          name="methods"
-          // classes="xl:col-span-2 xl:w-[350px] xl:ml-10 xl:-mt-20"
-          classes="mb-10 mb-0 xl:mb-0 xl:col-span-2 xl:w-[350px] xl:ml-10 xl:-mt-20"
-        />
-        <HomeElement
-          index={4}
-          name="linden"
-          classes="lg:mt-20 xl:mt-0 xl:-ml-28"
-        />
-        <HomeElement
-          index={5}
-          name="willow"
-          classes="mb-6 mb-0 xl:mb-0 xl:ml-10"
-        />
-        {/* About moet story worden */}
-        <HomeElement
-          index={7}
-          name="about"
-          classes="sm:mt-20 xl:mt-0 xl:ml-5"
-        />
-        <HomeElement index={8} name="wool" classes="-mt-10 sm:mt-10 md:mt-0" />
+        <HomeElement index={4} name="linden" />
+        <HomeElement index={5} name="willow" />
+        <HomeElement index={7} name="story" />
+        <HomeElement index={8} name="wool" />
         <HomeElement index={8} name="events" />
-        <HomeElement
-          index={9}
-          name="workshops"
-          classes="mb-6 mb-0 xl:mr-5 md:mb-0"
-        />
+        <HomeElement index={9} name="workshops" />
       </div>
-      {/* <FeaturedCollection collection={data.featuredCollection} />
-      <RecommendedProducts products={data.recommendedProducts} /> */}
+      {/* Methods moet mission worden */}
+      {/* About moet story worden */}
     </div>
   );
 }
@@ -167,12 +102,12 @@ function HomeElement({
 }) {
   return (
     <Link
-      style={{order: index}} // Add inline style to dynamically set the order
+      style={{order: index}}
       to={`/${name}`}
       className={`group lg:order-none w-80 sm:w-72 relative xl:w-64 md:flex md:justify-center md:items-center xl:block ${classes}`}
     >
       <img
-        src={`/images/homepage/${name}.svg`}
+        src={`/images/homepage/${name}.png`}
         alt={`${name}`}
         className="w-full h-auto group-hover:invisible transition-all opacity-100 group-hover:opacity-0"
       />
