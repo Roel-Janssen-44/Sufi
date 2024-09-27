@@ -153,11 +153,53 @@ export function Layout({children}: {children?: React.ReactNode}) {
         ) : (
           children
         )}
+        {/* asd
+        <form
+          method="post"
+          action="/contact#ContactFooter"
+          id="ContactFooter"
+          accept-charset="UTF-8"
+          className="footer__newsletter newsletter-form"
+        >
+          <input type="hidden" name="form_type" value="customer" />
+          <input type="hidden" name="utf8" value="✓" />
+          <input type="hidden" name="contact[tags]" value="newsletter" />
+          <div className="newsletter-form__field-wrapper">
+            <div className="field">
+              <input
+                id="NewsletterForm--sections--23358306943325__footer"
+                type="email"
+                name="contact[email]"
+                className="field__input"
+                aria-required="true"
+                placeholder="Email"
+                required
+              />
+              <label
+                className="field__label"
+                htmlFor="NewsletterForm--sections--23358306943325__footer"
+              >
+                Email
+              </label>
+              <button
+                type="submit"
+                className="newsletter-form__button field__button"
+                name="commit"
+                id="Subscribe"
+                aria-label="Subscribe"
+                data-dashlane-label="true"
+              >
+                
+                Submit
+              </button>
+            </div>
+          </div>
+        </form> */}
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
         <div
           aria-hidden
-          className="md:flex-row-reverse sm:hidden hidden sm:block bottom-10 mb-4 -top-20 bg-white group-hover:scale-110 duration-300 opacity-20 sm:w-1/2 md:w-1/3 w-[80%] -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 -top-20 mt-40 max-w-md h-16 w-44 w-32 w-20 h-10 h-16 mt-20 relative absolute top-0 -top-16 right-0 cursor-pointer invisible md:flex-wrap md:gap-0 hidden md:flex-row flex-col-reverse md:w-1/2 max-w-md max-w-xl mx-4 px-4 justify-between mt-8 mb-8 mt-4"
+          className="sm:flex-row md:flex-row-reverse sm:hidden hidden sm:block bottom-10 mb-4 -top-20 bg-white group-hover:scale-110 duration-300 opacity-20 sm:w-1/2 md:w-1/3 w-[80%] -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 -top-20 mt-40 max-w-md h-16 w-44 w-32 w-20 h-10 h-16 mt-20 relative absolute top-0 -top-16 right-0 cursor-pointer invisible md:flex-wrap md:gap-0 hidden md:flex-row flex-col-reverse md:w-1/2 max-w-md max-w-xl mx-4 px-4 justify-between mt-8 mb-8 mt-4"
         ></div>
       </body>
     </html>
