@@ -75,17 +75,9 @@ export function HeaderMenu({
       )}
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
-
-        // if the url is internal, we strip the domain
-        // const url =
-        //   item.url.includes('myshopify.com') ||
-        //   item.url.includes(publicStoreDomain) ||
-        //   item.url.includes(primaryDomainUrl)
-        //     ? new URL(item.url).pathname
-        //     : item.url;
-
         return (
           <NavItem
+            key={item.id}
             item={item}
             primaryDomainUrl={primaryDomainUrl}
             publicStoreDomain={publicStoreDomain}
