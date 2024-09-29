@@ -196,47 +196,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
             </div>
           </div>
         </form> */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-          if (!window.mootrack) {
-            (function (t, n, e, o, a) {
-              function d(t) {
-                var n = ~~(Date.now() / 3e5),
-                  o = document.createElement(e);
-                o.async = true;
-                o.src = t + "?ts=" + n;
-                var a = document.getElementsByTagName(e)[0];
-                a.parentNode.insertBefore(o, a);
-              }
-              t.MooTrackerObject = a;
-              t[a] =
-                t[a] ||
-                function () {
-                  return t[a].q
-                    ? void t[a].q.push(arguments)
-                    : void (t[a].q = [arguments]);
-                };
-              window.attachEvent
-                ? window.attachEvent("onload", d.bind(this, o))
-                : window.addEventListener("load", d.bind(this, o), !1);
-            })(window, document, "script", "https://cdn.stat-track.com/statics/moosend-tracking.min.js", "mootrack");
-          }
-          mootrack('loadForm', '19fa460b5e484ed2b44b796c90601453');
-        `,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-          <script>
-!function(t,n,e,o,a){function d(t){var n=~~(Date.now()/3e5),o=document.createElement(e);o.async=!0,o.src=t+"?ts="+n;var a=document.getElementsByTagName(e)[0];a.parentNode.insertBefore(o,a)}t.MooTrackerObject=a,t[a]=t[a]||function(){return t[a].q?void t[a].q.push(arguments):void(t[a].q=[arguments])},window.attachEvent?window.attachEvent("onload",d.bind(this,o)):window.addEventListener("load",d.bind(this,o),!1)}(window,document,"script","//cdn.stat-track.com/statics/moosend-tracking.min.js","mootrack");
-mootrack('init', '01d2beb9-62f8-4c1a-a59b-d4979ab1a2f6');
-</script>
-        `,
-          }}
-        />
-        {/* <Script>if(!window.mootrack){ !function(t,n,e,o,a){function d(t){var n=~~(Date.now()/3e5),o=document.createElement(e);o.async=!0,o.src=t+"?ts="+n;var a=document.getElementsByTagName(e)[0];a.parentNode.insertBefore(o,a)}t.MooTrackerObject=a,t[a]=t[a]||function(){return t[a].q?void t[a].q.push(arguments):void(t[a].q=[arguments])},window.attachEvent?window.attachEvent("onload",d.bind(this,o)):window.addEventListener("load",d.bind(this,o),!1)}(window,document,"script","https://cdn.stat-track.com/statics/moosend-tracking.min.js","mootrack"); } mootrack('loadForm', '19fa460b5e484ed2b44b796c90601453');</Script> */}
+
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
         <div
