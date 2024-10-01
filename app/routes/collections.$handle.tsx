@@ -108,19 +108,20 @@ function ProductItem({
   product: ProductItemFragment;
   loading?: 'eager' | 'lazy';
 }) {
-  const variant = product.variants.nodes[0];
-  const variantUrl = useVariantUrl(product.handle, variant.selectedOptions);
+  // const variant = product.variants.nodes[0];
+  // console.log('variant', product);
+  // const variantUrl = useVariantUrl(product.handle, variant.selectedOptions);
   return (
     <Link
       className="product-item relative"
       key={product.id}
       prefetch="intent"
-      to={variantUrl}
+      to={`/products/${product.handle}`}
     >
       {product.featuredImage && (
         <Image
           alt={product.featuredImage.altText || product.title}
-          aspectRatio="1/1"
+          // aspectRatio="1/1"
           data={product.featuredImage}
           loading={loading}
           sizes="(min-width: 45em) 400px, 100vw"

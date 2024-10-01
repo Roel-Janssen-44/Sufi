@@ -13,9 +13,9 @@ export function CartSummary({cart, layout}: CartSummaryProps) {
 
   return (
     <div aria-labelledby="cart-summary" className={className}>
-      <h4>Totals</h4>
+      {/* <h4>Totals</h4> */}
       <dl className="cart-subtotal">
-        <dt>Subtotal</dt>
+        <dt className="mr-2">Subtotal: </dt>
         <dd>
           {cart.cost?.subtotalAmount?.amount ? (
             <Money data={cart.cost?.subtotalAmount} />
@@ -73,7 +73,9 @@ function CartDiscounts({
         <div>
           <input type="text" name="discountCode" placeholder="Discount code" />
           &nbsp;
-          <button type="submit">Apply</button>
+          <button className="cursor-pointer" type="submit">
+            Apply
+          </button>
         </div>
       </UpdateDiscountForm>
     </div>

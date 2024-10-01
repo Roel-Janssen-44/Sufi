@@ -75,14 +75,15 @@ function ProductItem({
   product: ProductItemFragment;
   loading?: 'eager' | 'lazy';
 }) {
-  const variant = product.variants.nodes[0];
-  const variantUrl = useVariantUrl(product.handle, variant.selectedOptions);
+  // const variant = product.variants.nodes[0];
+  // const variantUrl = useVariantUrl(product.handle, variant.selectedOptions);
   return (
     <Link
       className="product-item relative group"
       key={product.id}
       prefetch="intent"
-      to={variantUrl}
+      // to={variantUrl}
+      to={`/products/${product.handle}`}
     >
       {product.featuredImage && (
         <div className="relative w-full h-auto overflow-hidden">

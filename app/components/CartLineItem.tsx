@@ -56,9 +56,9 @@ export function CartLineItem({
         <ul>
           {selectedOptions.map((option) => (
             <li key={option.name}>
-              <small>
+              {/* <small>
                 {option.name}: {option.value}
-              </small>
+              </small> */}
             </li>
           ))}
         </ul>
@@ -84,6 +84,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
       <small>Quantity: {quantity} &nbsp;&nbsp;</small>
       <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
         <button
+          className="cursor-pointer"
           aria-label="Decrease quantity"
           disabled={quantity <= 1 || !!isOptimistic}
           name="decrease-quantity"
@@ -95,6 +96,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
       &nbsp;
       <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
         <button
+          className="cursor-pointer"
           aria-label="Increase quantity"
           name="increase-quantity"
           value={nextQuantity}
@@ -127,7 +129,7 @@ function CartLineRemoveButton({
       action={CartForm.ACTIONS.LinesRemove}
       inputs={{lineIds}}
     >
-      <button disabled={disabled} type="submit">
+      <button className="cursor-pointer" disabled={disabled} type="submit">
         Remove
       </button>
     </CartForm>
