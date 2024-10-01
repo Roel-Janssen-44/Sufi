@@ -17,7 +17,6 @@ import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
 import {PageLayout} from '~/components/PageLayout';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
-import {Script} from '@shopify/hydrogen';
 
 export type RootLoader = typeof loader;
 
@@ -94,6 +93,8 @@ async function loadCriticalData({context}: LoaderFunctionArgs) {
         headerMenuHandle: 'main-menu', // Adjust to your header menu handle
       },
     }),
+
+    // storefront.query(ENV_VARIABLES_QUERY),
     // Add other queries here, so that they are loaded in parallel
   ]);
 
@@ -154,48 +155,6 @@ export function Layout({children}: {children?: React.ReactNode}) {
         ) : (
           children
         )}
-        {/* asd
-        <form
-          method="post"
-          action="/contact#ContactFooter"
-          id="ContactFooter"
-          accept-charset="UTF-8"
-          className="footer__newsletter newsletter-form"
-        >
-          <input type="hidden" name="form_type" value="customer" />
-          <input type="hidden" name="utf8" value="✓" />
-          <input type="hidden" name="contact[tags]" value="newsletter" />
-          <div className="newsletter-form__field-wrapper">
-            <div className="field">
-              <input
-                id="NewsletterForm--sections--23358306943325__footer"
-                type="email"
-                name="contact[email]"
-                className="field__input"
-                aria-required="true"
-                placeholder="Email"
-                required
-              />
-              <label
-                className="field__label"
-                htmlFor="NewsletterForm--sections--23358306943325__footer"
-              >
-                Email
-              </label>
-              <button
-                type="submit"
-                className="newsletter-form__button field__button"
-                name="commit"
-                id="Subscribe"
-                aria-label="Subscribe"
-                data-dashlane-label="true"
-              >
-                
-                Submit
-              </button>
-            </div>
-          </div>
-        </form> */}
 
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />

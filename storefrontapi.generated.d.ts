@@ -3,6 +3,19 @@
 /* eslint-disable */
 import type * as StorefrontAPI from '@shopify/hydrogen/storefront-api-types';
 
+export type CreateCustomerMutationVariables = StorefrontAPI.Exact<{
+  input: StorefrontAPI.CustomerCreateInput;
+}>;
+
+export type CreateCustomerMutation = {
+  customerCreate?: StorefrontAPI.Maybe<{
+    customer?: StorefrontAPI.Maybe<
+      Pick<StorefrontAPI.Customer, 'id' | 'email' | 'firstName' | 'lastName'>
+    >;
+    userErrors: Array<Pick<StorefrontAPI.UserError, 'field' | 'message'>>;
+  }>;
+};
+
 export type MoneyFragment = Pick<
   StorefrontAPI.MoneyV2,
   'currencyCode' | 'amount'
@@ -1311,7 +1324,12 @@ interface GeneratedQueryTypes {
   };
 }
 
-interface GeneratedMutationTypes {}
+interface GeneratedMutationTypes {
+  '#graphql\n  mutation CreateCustomer($input: CustomerCreateInput!) {\n    customerCreate(input: $input) {\n      customer {\n        id\n        email\n        firstName\n        lastName\n      }\n      userErrors {\n        field\n        message\n      }\n    }\n  }\n': {
+    return: CreateCustomerMutation;
+    variables: CreateCustomerMutationVariables;
+  };
+}
 
 declare module '@shopify/hydrogen' {
   interface StorefrontQueries extends GeneratedQueryTypes {}
