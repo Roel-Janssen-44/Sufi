@@ -1,5 +1,9 @@
 import {defer, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {useLoaderData, type MetaFunction} from '@remix-run/react';
+import SubscribeButton from '~/components/NewsletterSubscribeButton';
+
+import {useEffect} from 'react';
+import {useModal} from '../components/NewsletterModalContext';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
   return [{title: `Hydrogen | ${data?.page.title ?? ''}`}];
@@ -53,6 +57,47 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
 
 export default function Page() {
   const {page} = useLoaderData<typeof loader>();
+
+  const {toggleModal} = useModal(); // Access the modal toggle function from context
+
+  // useEffect(() => {
+  //   // Select the button from the rendered HTML
+  //   const button = document.querySelector('#newsletter-modal-toggle');
+
+  //   console.log(button);
+  //   if (button) {
+  //     console.log('button exists');
+  //     // Add a click event listener to trigger the modal when the button is clicked
+  //     button.addEventListener('click', toggleModal);
+  //   }
+
+  //   // Cleanup the event listener on component unmount
+  //   return () => {
+  //     if (button) {
+  //       button.removeEventListener('click', toggleModal);
+  //     }
+  //   };
+  // }, [toggleModal]);
+
+  useEffect(() => {
+    // Select all buttons with the common class name
+    const buttons = document.querySelectorAll('.newsletter-modal-toggle');
+
+    if (buttons.length) {
+      console.log(`${buttons.length} buttons exist`);
+      // Add a click event listener to each button
+      buttons.forEach((button) => {
+        button.addEventListener('click', toggleModal);
+      });
+    }
+
+    // Cleanup the event listeners on component unmount
+    return () => {
+      buttons.forEach((button) => {
+        button.removeEventListener('click', toggleModal);
+      });
+    };
+  }, [toggleModal]);
 
   return (
     <div className="page">

@@ -15,6 +15,10 @@ import {
 } from '~/components/SearchFormPredictive';
 import {SearchResultsPredictive} from '~/components/SearchResultsPredictive';
 
+import Modal from './NewsletterForm';
+import {ModalProvider} from './NewsletterModalContext';
+import NewsletterSubscribeButton from '~/components/NewsletterSubscribeButton';
+
 interface PageLayoutProps {
   cart: Promise<CartApiQueryFragment | null>;
   footer: Promise<FooterQuery | null>;
@@ -45,7 +49,12 @@ export function PageLayout({
           publicStoreDomain={publicStoreDomain}
         />
       )}
-      <main>{children}</main>
+      <ModalProvider>
+        <main>{children}</main>
+        <Modal />
+        {/* <NewsletterSubscribeButton /> */}
+      </ModalProvider>
+
       <Footer
         footer={footer}
         header={header}

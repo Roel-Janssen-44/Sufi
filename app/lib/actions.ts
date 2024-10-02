@@ -4,10 +4,7 @@ const CREATE_CUSTOMER_MUTATION = `
   mutation customerCreate($input: CustomerCreateInput!) {
     customerCreate(input: $input) {
       customer {
-        firstName
-        lastName
         email
-        phone
         acceptsMarketing
       }
       customerUserErrors {
@@ -19,13 +16,10 @@ const CREATE_CUSTOMER_MUTATION = `
   }
 `;
 
-export async function signupToNewsletter() {
+export async function signupToNewsletter(email: string) {
   const input = {
-    firstName: 'John',
-    lastName: 'Smith',
-    email: 'johnsmith@shopify.com',
-    phone: '+15146669999',
-    password: '5hopify',
+    email: email,
+    password: generatePassword(),
     acceptsMarketing: true,
   };
 
@@ -35,8 +29,8 @@ export async function signupToNewsletter() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Todo - replace with your own storefront access token
-        'X-Shopify-Storefront-Access-Token': '',
+        // Todo - replace with own storefront access token
+        'X-Shopify-Storefront-Access-Token': '52043fd52760a774b6707eeb621a3027',
       },
       body: JSON.stringify({
         query: CREATE_CUSTOMER_MUTATION,
@@ -46,5 +40,15 @@ export async function signupToNewsletter() {
   );
 
   const data = await response.json();
-  console.log(data);
+}
+
+function generatePassword(length = 12) {
+  const charset =
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
+  let password = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    password += charset[randomIndex];
+  }
+  return password;
 }

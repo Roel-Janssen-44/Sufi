@@ -1,6 +1,5 @@
 // import {defer, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link, type MetaFunction} from '@remix-run/react';
-import NewsletterForm from '~/components/NewsletterForm';
 // import {Suspense} from 'react';
 // import {Image, Money} from '@shopify/hydrogen';
 // import type {
@@ -88,7 +87,7 @@ export default function Homepage() {
       {/* Methods moet mission worden */}
       {/* About moet story worden */}
 
-      <NewsletterForm />
+      {/* <NewsletterForm /> */}
     </div>
   );
 }

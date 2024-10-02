@@ -7,6 +7,8 @@ import type {
 import {AddToCartButton} from '~/components/AddToCartButton';
 import {useAside} from '~/components/Aside';
 
+import SubscribeButton from './NewsletterSubscribeButton';
+
 export function ProductForm({
   product,
   selectedVariant,
@@ -55,16 +57,17 @@ export function ProductForm({
             <span className="sr-only">Add to cart</span>
           </>
         ) : (
-          <>
-            <img
-              aria-hidden
-              className="w-44 hover:opacity-80 transition-opacity"
-              src="/images/notify-me.png"
-            />
-            <span className="sr-only">Notify me</span>
-          </>
+          <></>
         )}
       </AddToCartButton>
+
+      {selectedVariant?.availableForSale ? (
+        <></>
+      ) : (
+        <>
+          <SubscribeButton />
+        </>
+      )}
     </div>
   );
 }
