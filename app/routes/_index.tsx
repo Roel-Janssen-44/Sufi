@@ -101,10 +101,33 @@ function HomeElement({
   classes?: string;
   index: number;
 }) {
+  let url: string;
+  if (name === 'wild-flowers') {
+    url = '/pages/wildflowers';
+  } else if (name === 'shop') {
+    url = '/collections/all';
+  } else if (name === 'mission') {
+    url = '/pages/mission#mission';
+  } else if (name === 'linden') {
+    url = '/pages/linden';
+  } else if (name === 'willow') {
+    url = '/pages/willow';
+  } else if (name === 'story') {
+    url = '/pages/mission';
+  } else if (name === 'wool') {
+    url = '/pages/wool';
+  } else if (name === 'events') {
+    url = '/pages/events';
+  } else if (name === 'workshops') {
+    url = '/pages/workshops';
+  } else {
+    url = '/';
+  }
+
   return (
     <Link
       style={{order: index}}
-      to={`/${name}`}
+      to={url}
       className={`group lg:order-none w-80 sm:w-72 relative xl:w-64 md:flex md:justify-center md:items-center xl:block ${classes}`}
     >
       <img
