@@ -257,6 +257,6 @@ function activeLinkStyle({
   isPending: boolean;
 }) {
   return {
-    color: isActive ? 'white' : 'black',
+    color: isActive ? '#e88a60' : 'black',
   };
 }

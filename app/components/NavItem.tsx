@@ -104,10 +104,10 @@ export default function NavItem({
           key={item.id}
           onClick={closeAside}
           prefetch="intent"
-          style={activeLinkStyle}
+          style={activeLinkStyleMobile}
           to={url}
         >
-          <span className=" relative text-center w-40 no-underline hover:no-underline group-hover:text-white z-20">
+          <span className="relative text-center w-40 no-underline hover:no-underline group-hover:text-white z-20">
             {item.title}
           </span>
         </NavLink>{' '}
@@ -125,5 +125,16 @@ function activeLinkStyle({
 }) {
   return {
     color: isActive ? 'white' : 'black',
+  };
+}
+function activeLinkStyleMobile({
+  isActive,
+  isPending,
+}: {
+  isActive: boolean;
+  isPending: boolean;
+}) {
+  return {
+    color: isActive ? '#e88a60' : 'black',
   };
 }
