@@ -73,7 +73,9 @@ export function HeaderMenu({
           Home
         </NavLink>
       )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
+      {(menu || FALLBACK_HEADER_MENU).items.map((item, index) => {
+        const isLastIndex =
+          index === (menu || FALLBACK_HEADER_MENU).items.length - 1;
         if (!item.url) return null;
         return (
           <NavItem
@@ -82,6 +84,7 @@ export function HeaderMenu({
             primaryDomainUrl={primaryDomainUrl}
             publicStoreDomain={publicStoreDomain}
             closeAside={closeAside}
+            isLastIndex={isLastIndex}
           />
         );
       })}

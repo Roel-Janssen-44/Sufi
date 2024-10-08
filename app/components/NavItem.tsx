@@ -11,11 +11,13 @@ export default function NavItem({
   primaryDomainUrl,
   publicStoreDomain,
   closeAside,
+  isLastIndex,
 }: {
   item: any;
   primaryDomainUrl: any;
   publicStoreDomain: any;
   closeAside: any;
+  isLastIndex: true | false;
 }) {
   // if the url is internal, we strip the domain
   let url =
@@ -65,7 +67,7 @@ export default function NavItem({
         />
         {item.items.length > 0 ? (
           <div className="font-title absolute invisible w-32 opacity-0 group-hover:visible group-hover:opacity-100 flex flex-col left-1/2 -translate-x-1/2 top-10">
-            {item.items.map((subItem: any) => {
+            {item.items.map((subItem: any, index: any) => {
               let subItemUrl =
                 item.url.includes('myshopify.com') ||
                 item.url.includes(publicStoreDomain) ||
@@ -78,21 +80,54 @@ export default function NavItem({
               } else if (subItem.title.toLowerCase() == 'opportunities') {
                 subItemUrl = 'pages/team#opportunities';
               }
-              return (
-                <NavLink
-                  className="relative"
-                  end
-                  key={subItem.id}
-                  onClick={closeAside}
-                  prefetch="intent"
-                  style={activeLinkStyle}
-                  to={subItemUrl || '/'}
-                >
-                  <span className="text-light-text lowercase font-semibold hover:underline">
-                    {subItem.title}
-                  </span>
-                </NavLink>
-              );
+              if (!isLastIndex || index !== item.items.length - 1) {
+                return (
+                  <NavLink
+                    className="relative"
+                    end
+                    key={subItem.id}
+                    onClick={closeAside}
+                    prefetch="intent"
+                    style={activeLinkStyle}
+                    to={subItemUrl || '/'}
+                  >
+                    <span className="text-light-text lowercase font-semibold hover:underline">
+                      {subItem.title}
+                    </span>
+                  </NavLink>
+                );
+              } else {
+                return (
+                  <>
+                    <NavLink
+                      className="relative"
+                      end
+                      key={subItem.id}
+                      onClick={closeAside}
+                      prefetch="intent"
+                      style={activeLinkStyle}
+                      to={subItemUrl || '/'}
+                    >
+                      <span className="text-light-text lowercase font-semibold hover:underline">
+                        {subItem.title}
+                      </span>
+                    </NavLink>
+                    <NavLink
+                      className="relative"
+                      end
+                      key={subItem.id}
+                      onClick={closeAside}
+                      prefetch="intent"
+                      style={activeLinkStyle}
+                      to={'/contact'}
+                    >
+                      <span className="text-light-text lowercase font-semibold hover:underline">
+                        Contact
+                      </span>
+                    </NavLink>
+                  </>
+                );
+              }
             })}
           </div>
         ) : null}
