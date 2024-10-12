@@ -191,8 +191,14 @@ function CartBadge({count}: {count: number | null}) {
         src="/images/basket-hover-empty.png"
         className="absolute left-[6px] top-[3px] invisible opacity-0 group-hover:opacity-100 group-hover:visible"
       />
-      {/* Todo - add product counter */}
-      {/* {count === null ? null : count} */}
+      {count !== 0 && (
+        <div className="absolute left-0 top-0 flex items-center justify-center">
+          <span className="absolute top-0 right-[9px] sm:right-[14px] sm:top-1 text-background">
+            {count}
+          </span>
+          <img src="/images/cart-amount.png" alt="" aria-hidden />
+        </div>
+      )}
     </a>
   );
 }
