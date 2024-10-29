@@ -14,7 +14,7 @@ import {ProductImage} from '~/components/ProductImage';
 import {ProductForm} from '~/components/ProductForm';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{title: `Hydrogen | ${data?.product.title ?? ''}`}];
+  return [{title: `Sufi | ${data?.product.title ?? ''}`}];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -156,14 +156,14 @@ export default function Product() {
           <div className="flex mb-6">
             <div className="relative">
               <img
-                src="/images/product-title-background.png"
+                src="/images/wool-product-cutout.svg"
                 alt="Decorative image"
                 aria-hidden
                 width={275}
               />
               <h1
                 style={{fontSize: '1rem'}}
-                className="w-full text-center text-white absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                className="w-full text-center text-background absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-0"
               >
                 {title}
               </h1>

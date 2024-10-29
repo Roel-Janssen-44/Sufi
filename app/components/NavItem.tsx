@@ -106,19 +106,6 @@ export default function NavItem({
                       onClick={closeAside}
                       prefetch="intent"
                       style={activeLinkStyle}
-                      to={subItemUrl || '/'}
-                    >
-                      <span className="text-light-text lowercase font-semibold hover:underline">
-                        {subItem.title}
-                      </span>
-                    </NavLink>
-                    <NavLink
-                      className="relative"
-                      end
-                      key={subItem.id}
-                      onClick={closeAside}
-                      prefetch="intent"
-                      style={activeLinkStyle}
                       to={'/contact'}
                     >
                       <span className="text-light-text lowercase font-semibold hover:underline">

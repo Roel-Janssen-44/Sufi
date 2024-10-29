@@ -6,7 +6,7 @@ import {useEffect} from 'react';
 import {useModal} from '../components/NewsletterModalContext';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{title: `Hydrogen | ${data?.page.title ?? ''}`}];
+  return [{title: `Sufi | ${data?.page.title ?? ''}`}];
 };
 
 export async function loader(args: LoaderFunctionArgs) {

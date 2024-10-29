@@ -52,7 +52,7 @@ export function ProductForm({
             <img
               aria-hidden
               className="w-44 hover:opacity-80 transition-opacity"
-              src="/images/buy-button.png"
+              src="/images/buy-button.svg"
             />
             <span className="sr-only">Add to cart</span>
           </>
